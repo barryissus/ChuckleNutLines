@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="i-saw-it-i-saw-what-you-deleted.gif">
+    <title>you gonna cry?</title>
+    <style>
+        @font-face {
+            font-family: ScoutSaying;
+            src: url(tf2build.ttf);  
+        }
+        h2,button {
+            font-family: ScoutSaying;
+        }
+        .multicolor-text {
+			text-align: center;
+			font-size: 50px;
+			background: linear-gradient(to left,
+            #3e3e3e,
+            #9a9280,
+            #f5e5c1,
+            #f4722b,
+            #b46032
+            );
+            -webkit-background-clip: text;
+            color: transparent;
+		}
+        html {
+            background-color: #355E3B;
+        }
+    </style>
+</head>
+
+<body>
+<!--Think fast CHUCKLENUTS-->
+
+<div class="multicolor-text"><h2 style="font-size: 50px;">Sans simu- oh wait shit I meant chucklenut lines</h2><p> ...yeah</p></div>
+<button style="position: relative;left: 850px;" onclick="playRandomAudio()">Play Random Audio🏏<img src="1024px-Team_Fortress_2_style_logo.svg (2).png" alt=""></button>
+<img src="scout-arabic.gif" alt="">
+<img style="height: 300; width: 300px; position: relative; bottom: 100px; left: 575px; top: 0px;" src="scout-tf2conga-low-res.gif" alt="">
+<img style="position: relative; top: -100px; right: 220px;" src="scout-tf2.gif" alt="">
+<img src="EIPnommWsAgd_Ik.jpg" alt="">
+<video autoplay controls src="m2-res_720p.mp4"></video>
+    <script>
+        function playRandomAudio() {
+            // Add a 1 in 100 chance to play a different sound
+            const shouldPlayDifferentSound = Math.floor(Math.random() * 40) === 0;
+
+            if (shouldPlayDifferentSound) {
+                // List of different sounds
+                const differentSounds = [
+                    'think-fast-chucklenuts_3ATncZo.mp3'
+                    // Add more different sounds as needed
+                ];
+
+                // Choose a random different sound
+                const randomDifferentSound = differentSounds[Math.floor(Math.random() * differentSounds.length)];
+
+                // Create an audio element for the different sound
+                const differentAudio = new Audio(randomDifferentSound);
+
+                // Play the different sound
+                differentAudio.play();
+            } else {
+                // Get all audio files in the "audio" folder
+                fetch('assets/')
+                    .then(response => response.text())
+                    .then(data => {
+                        // Extract audio file names from the HTML response
+                        const parser = new DOMParser();
+                        const htmlDocument = parser.parseFromString(data, 'text/html');
+                        const audioFiles = Array.from(htmlDocument.querySelectorAll('a'))
+                            .map(a => a.href)
+                            .filter(href => href.endsWith('.mp3') || href.endsWith('.wav'));
+
+                        // Get a random index
+                        const randomIndex = Math.floor(Math.random() * audioFiles.length);
+
+                        // Create an audio element
+                        const audio = new Audio(audioFiles[randomIndex]);
+
+                        // Play the audio
+                        audio.play();
+                    })
+                    .catch(error => console.error('Error fetching audio files:', error));
+            }
+        }
+    </script>
+
+</body>
+
+</html>
